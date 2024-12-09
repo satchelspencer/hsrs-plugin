@@ -1,4 +1,5 @@
 export interface CardState {
+  id: string
   value: { [prop: string]: string }
   vars: { [prop: string]: string }
   revealed: boolean
