@@ -3,6 +3,9 @@ export interface CardState {
     value: {
         [prop: string]: string;
     };
+    aliases: {
+        [prop: string]: string;
+    }[];
     vars: {
         [prop: string]: string;
     };
