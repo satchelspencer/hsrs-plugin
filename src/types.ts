@@ -5,6 +5,7 @@ export interface CardState {
   vars: { [prop: string]: string }
   revealed: boolean
   property: string
+  mode: string
 }
 
 export interface StateUpdateMessage {

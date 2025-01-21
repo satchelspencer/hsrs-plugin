@@ -11,6 +11,7 @@ export interface CardState {
     };
     revealed: boolean;
     property: string;
+    mode: string;
 }
 export interface StateUpdateMessage {
     type: 'state';
