@@ -14,6 +14,7 @@ function hsrsPlugin(options, onState) {
             type: 'key',
             key: event.key,
             meta: event.metaKey,
+            ctrl: event.ctrlKey
         };
         const targetOrigin = (allowedOrigins === null || allowedOrigins === void 0 ? void 0 : allowedOrigins[0]) || '*';
         window.parent.postMessage(msg, targetOrigin);

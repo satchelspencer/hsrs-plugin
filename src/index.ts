@@ -20,6 +20,7 @@ export function hsrsPlugin(
         type: 'key',
         key: event.key,
         meta: event.metaKey,
+        ctrl: event.ctrlKey
       }
 
       const targetOrigin = allowedOrigins?.[0] || '*'

@@ -21,6 +21,7 @@ export interface KeyEventMessage {
     type: 'key';
     key: string;
     meta: boolean;
+    ctrl: boolean;
 }
 export interface ReadyMessage {
     type: 'ready';
