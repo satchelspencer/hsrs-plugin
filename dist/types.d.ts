@@ -1,14 +1,12 @@
+type PropMap = {
+    [prop: string]: string;
+};
 export interface CardState {
     id: string;
-    value: {
-        [prop: string]: string;
-    };
-    aliases: {
-        [prop: string]: string;
-    }[];
-    vars: {
-        [prop: string]: string;
-    };
+    value: PropMap;
+    next?: PropMap;
+    aliases: PropMap[];
+    vars: PropMap;
     revealed: boolean;
     property: string;
     mode: string;
@@ -31,3 +29,4 @@ export interface InitOptions {
 }
 export type IncomingMessage = StateUpdateMessage;
 export type OutgoingMessage = ReadyMessage | KeyEventMessage;
+export {};
