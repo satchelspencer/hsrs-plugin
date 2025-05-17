@@ -1,6 +1,8 @@
-import { CardState, InitOptions, KeyEventMessage, ReadyMessage } from './types'
+import { keyboardShortcuts } from './keys'
+import { CardState, InitOptions, ReadyMessage, ShortcutMessage } from './types'
 
 export { CardState } from './types'
+export {keyboardShortcuts, Shortcut} from './keys'
 
 export function hsrsPlugin(
   options: InitOptions,
@@ -14,21 +16,18 @@ export function hsrsPlugin(
       if (typeof data === 'object' && data?.type === 'state') {
         onState(data.state)
       }
-    },
-    handleKeyDown = (event: KeyboardEvent) => {
-      const msg: KeyEventMessage = {
-        type: 'key',
-        key: event.key,
-        meta: event.metaKey,
-        ctrl: event.ctrlKey
-      }
-
-      const targetOrigin = allowedOrigins?.[0] || '*'
-      window.parent.postMessage(msg, targetOrigin)
     }
 
+  const cleanupShortcuts = keyboardShortcuts((shortCut) => {
+    const msg: ShortcutMessage = {
+        type: 'shortcut',
+        name: shortCut,
+      },
+      targetOrigin = allowedOrigins?.[0] || '*'
+    window.parent.postMessage(msg, targetOrigin)
+  })
+
   window.addEventListener('message', handleMessage)
-  window.addEventListener('keydown', handleKeyDown)
 
   const msg: ReadyMessage = { type: 'ready' },
     targetOrigin = allowedOrigins?.[0] || '*'
@@ -36,6 +35,6 @@ export function hsrsPlugin(
 
   return () => {
     window.removeEventListener('message', handleMessage)
-    window.removeEventListener('keydown', handleKeyDown)
+    cleanupShortcuts()
   }
 }
