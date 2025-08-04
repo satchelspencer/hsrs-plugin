@@ -7,7 +7,7 @@ export function keyboardShortcuts(cb: (shortCut: Shortcut) => void) {
       else if (event.code === 'Digit2') return '2'
       else if (event.code === 'Digit3') return '3'
       else if (event.code === 'Digit4') return '4'
-      else if ((event.code === 'KeyZ' && event.metaKey) || event.ctrlKey) return 'undo'
+      else if (event.code === 'KeyZ' && (event.metaKey || event.ctrlKey)) return 'undo'
     },
     handleKeyDown = (event: KeyboardEvent) => {
       const shortCut = getShortCut(event)

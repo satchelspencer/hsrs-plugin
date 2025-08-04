@@ -13,7 +13,7 @@ function keyboardShortcuts(cb) {
             return '3';
         else if (event.code === 'Digit4')
             return '4';
-        else if ((event.code === 'KeyZ' && event.metaKey) || event.ctrlKey)
+        else if (event.code === 'KeyZ' && (event.metaKey || event.ctrlKey))
             return 'undo';
     }, handleKeyDown = (event) => {
         const shortCut = getShortCut(event);
